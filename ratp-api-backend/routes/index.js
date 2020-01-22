@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/login', User.login)
-      .put('/register', User.register)
-      .post('/favorites', User.postFavorites)
+      .post('/register', User.register)
+      .put('/favorites', User.postFavorites)
       .get('/favorites', User.getFavorites)
 
 module.exports = router;

@@ -6,6 +6,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 const mongoose = require('./config/db'); //database configuration
+require('dotenv').config();
 
 
 var app = express();
@@ -14,17 +15,15 @@ app.use(cors());
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.set('secretKey', 'hello'); // jwt secret token
+app.set('secretKey', process.env.SECRET); // jwt secret token
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api', indexRouter);
