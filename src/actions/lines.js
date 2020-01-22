@@ -27,7 +27,7 @@ export function getFavoritesLines() {
         const request = APILocal.get('/favorites');
         request
             .then(response => dispatch({type: GET_FAVORITE_LINES_SUCCESS, data: response.data}))
-            .catch(error => dispatch({type: GET_FAVORITE_LINES_FAILURE, data: error}))
+            .catch(error => dispatch({type: GET_FAVORITE_LINES_FAILURE, data: error.error}))
         ;
         return request;
     };

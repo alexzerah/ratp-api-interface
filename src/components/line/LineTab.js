@@ -10,7 +10,7 @@ class LineTab extends Component {
         super(props);
 
         this.state = {
-            line: this.props.line,
+            line: (props.line && props.line.length > 0) && props.line,
             page: 1
         };
 
@@ -43,6 +43,8 @@ class LineTab extends Component {
                     }
                 </Select>
                 {
+                    this.state.line &&
+                    this.state.line.length > 0 &&
                     this.state.line
                         .slice((this.state.page - 1) * 10, this.state.page * 10)
                         .map(l =>
@@ -54,7 +56,7 @@ class LineTab extends Component {
                         )
                 }
                 {
-                    this.state.line.length > 10 &&
+                    this.state.line && this.state.line.length > 10 &&
                         <Pagination simple onChange={page => this.setState({page})} total={this.state.line.length} />
                 }
             </Fragment>
@@ -64,7 +66,7 @@ class LineTab extends Component {
 
 LineTab.propTypes = {
     /** The array of lines */
-    line: PropTypes.array.isRequired,
+    line: PropTypes.array,
     /** The type of line */
     type: PropTypes.oneOf(['Métro', 'Tramway', 'RER', 'Noctilien', 'Bus']).isRequired
 };

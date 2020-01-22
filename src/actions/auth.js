@@ -18,7 +18,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export function logIn(data) {
     return dispatch => {
         dispatch({type: LOGIN_REQUESTED});
-        const request = APILocal.post('/api/login', data);
+        const request = APILocal.post('/login', data);
         request
             .then(response => {
                 localStorage.setItem("token", response.data.token);
@@ -37,7 +37,7 @@ export const SIGN_IN_FAIL = "SIGN_IN_FAIL";
 export function signIn(data) {
     return dispatch => {
         dispatch({type: SIGN_IN_REQUESTED});
-        const request = APILocal.post('/api/register', data);
+        const request = APILocal.post('/register', data);
         request
             .then(response => {
                 localStorage.setItem("token", response.data.token);

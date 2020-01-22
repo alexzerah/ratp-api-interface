@@ -10,6 +10,7 @@ import TeamScreen from "./screens/TeamScreen";
 import ContactScreen from "./screens/ContactScreen";
 import AuthRoute from "./utils/AuthRoute";
 import LoginScreen from "./screens/LoginScreen";
+import FavoriteScreen from "./screens/FavoriteScreen";
 
 const App = () => (
     <BrowserRouter>
@@ -19,6 +20,7 @@ const App = () => (
             <AuthRoute exact path="/traffics" component={TrafficScreen} />
             <AuthRoute exact path="/lines" component={LinesScreen} />
             <AuthRoute exact path="/schedules" component={SchedulesScreen} />
+            <AuthRoute exact path="/favorites" component={FavoriteScreen} />
             <Route exact path="/team" component={TeamScreen} />
             <Route exact path="/contacts" component={ContactScreen} />
 
