@@ -31,3 +31,13 @@
     margin: 8px 0 0 0;
   }
 }
+
+
+.trafficCard__collapse {
+  height: 0;
+  opacity: 0;
+}
+.trafficCard__container.isOpen .trafficCard__collapse {
+  height: 100px;
+  opacity: 1;
+}

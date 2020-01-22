@@ -28,7 +28,8 @@ class LineTab extends Component {
     render() {
         return (
             <Fragment>
-                <Select
+                {this.props.line && (
+                    <Select
                     mode="multiple"
                     showSearch
                     allowClear
@@ -42,19 +43,22 @@ class LineTab extends Component {
                             )
                     }
                 </Select>
+                )}
                 {
-                    this.state.line
+                    this.state.line && this.state.line
                         .slice((this.state.page - 1) * 10, this.state.page * 10)
                         .map(l =>
                             <LineCard
                                 key={this.props.type + "-" + l.id}
                                 type={this.props.type}
                                 lineItem={l}
+                                stationsList={this.props.stationsList}
+                                onClick={() => this.props.onClick && this.props.onClick(l.code)}
                             />
                         )
                 }
                 {
-                    this.state.line.length > 10 &&
+                    this.state.line && this.state.line.length > 10 &&
                         <Pagination simple onChange={page => this.setState({page})} total={this.state.line.length} />
                 }
             </Fragment>

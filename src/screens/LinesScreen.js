@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { getStations } from "../actions/stations";
 import { getLines } from "../actions/lines";
 import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
@@ -13,12 +14,14 @@ class LinesScreen extends Component {
         super(props);
 
         this.state = {
-            loading: Object.keys(this.props.lines.linesList).length === 0
+            loading: Object.keys(this.props.lines.linesList).length === 0,
+            stations: {}
         };
 
         document.title = "RATP API Interface - Lignes de transports";
 
         this.loadLines = this.loadLines.bind(this);
+        this.loadStations = this.loadStations.bind(this);
     }
 
     componentDidMount() {
@@ -31,8 +34,14 @@ class LinesScreen extends Component {
             .catch(() => notificationError(this.props.lines.linesError.code, this.props.lines.linesError.message));
     }
 
+    loadStations(line) {
+        line && this.props.getStations(line)
+            .catch(() => notificationError(this.props.stations.stationsError.code, this.props.stations.stationsError.message));
+    }
+
     render() {
         const linesList = this.props.lines.linesList;
+        
 
         return (
             <AppLayout
@@ -58,6 +67,8 @@ class LinesScreen extends Component {
                                     <LineTab
                                         line={linesList.metros}
                                         type="Métro"
+                                        onClick={line => this.loadStations(line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="RERs" key="rers">
@@ -93,10 +104,12 @@ class LinesScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    stations: state.stations,
     lines: state.lines
 });
 
 const mapDispatchToProps = {
+    getStations,
     getLines
 };
 
