@@ -20,7 +20,10 @@ export function logIn(data) {
         dispatch({type: LOGIN_REQUESTED});
         const request = APILocal.post('/api/login', data);
         request
-            .then(response => dispatch({type: LOGIN_SUCCESS, data: response.data}))
+            .then(response => {
+                localStorage.setItem("token", response.data.token);
+                dispatch({type: LOGIN_SUCCESS, data: response.data.token});
+            })
             .catch(error => dispatch({type: LOGIN_FAIL, data: error}))
         ;
         return request;
@@ -34,9 +37,12 @@ export const SIGN_IN_FAIL = "SIGN_IN_FAIL";
 export function signIn(data) {
     return dispatch => {
         dispatch({type: SIGN_IN_REQUESTED});
-        const request = APILocal.post('/api/sign_in', data);
+        const request = APILocal.put('/api/register', data);
         request
-            .then(response => dispatch({type: SIGN_IN_SUCCESS, data: response.data}))
+            .then(response => {
+                localStorage.setItem("token", response.data.token);
+                dispatch({type: SIGN_IN_SUCCESS, data: response.data.token})
+            })
             .catch(error => dispatch({type: SIGN_IN_FAIL, data: error}))
         ;
         return request;

@@ -12,7 +12,7 @@ export function parseJwt(token){
 }
 
 const initialState = {
-    user: null,
+    user: localStorage.getItem("token") ? parseJwt(localStorage.getItem("token")) : null,
     logInLoading: false,
     logInError: null,
     logOutLoading: false,

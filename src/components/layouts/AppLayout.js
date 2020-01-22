@@ -45,7 +45,7 @@ class AppLayout extends Component {
                     {
                         isConnected &&
                             <div className="app-layout-connected-user">
-                                <Avatar icon="user" /> <span className="app-layout-connected-user-name">Tim</span>
+                                <Avatar icon="user" /> <span className="app-layout-connected-user-name">{user.username}</span>
                             </div>
                     }
                     <Menu
