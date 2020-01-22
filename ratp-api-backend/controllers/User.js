@@ -24,7 +24,6 @@ exports.login = function (req, res, next) {
             if (err) {
                 next(err);
             } else {
-                console.log(userInfo)
                 if (bcrypt.compareSync(req.body.password, userInfo.password)) {
                     const token = jwt.sign({ username: userInfo.username }, req.app.get('secretKey'));
                     const favorites = userInfo.favorites || [];

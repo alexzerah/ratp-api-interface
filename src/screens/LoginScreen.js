@@ -34,14 +34,14 @@ class LoginScreen extends Component {
         e.preventDefault();
         this.props.logIn(this.state.logIn)
             .then(() => this.props.history.push("/lines"))
-            .catch(error => console.log(error));
+            .catch(() => notificationError(this.props.auth.logInError, ""));
     }
 
     submitSignIn(e) {
         e.preventDefault();
         this.props.signIn(this.state.signIn)
             .then(() => this.props.history.push("/lines"))
-            .catch(error => notificationError(error, ""));
+            .catch(() => notificationError(this.props.auth.signInError, ""));
     }
 
     render() {
