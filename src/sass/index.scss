@@ -17,10 +17,12 @@
 @import "libs/antd-tabs";
 
 /** COMPONENTS */
-@import "components/traffic-cards";
 @import "components/exceptions";
+@import "components/layouts";
+@import "components/traffic-cards";
 
 /** SCREENS */
 @import "screens/home";
+@import "screens/login";
 @import "screens/schedules";
 @import "screens/team";

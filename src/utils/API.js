@@ -8,7 +8,7 @@ instance.interceptors.request.use(
     config => config,
     error => Promise.reject(error)
 );
-instance.defaults.headers['Content-Type'] = 'application/ld+json';
+instance.defaults.headers['Content-Type'] = 'application/json';
 instance.defaults.timeout = 3000;
 
 export default instance;
