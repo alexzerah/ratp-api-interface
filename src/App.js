@@ -8,14 +8,17 @@ import LinesScreen from "./screens/LinesScreen";
 import SchedulesScreen from "./screens/SchedulesScreen";
 import TeamScreen from "./screens/TeamScreen";
 import ContactScreen from "./screens/ContactScreen";
+import AuthRoute from "./utils/AuthRoute";
+import LoginScreen from "./screens/LoginScreen";
 
 const App = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/traffics" component={TrafficScreen} />
-            <Route exact path="/lines" component={LinesScreen} />
-            <Route exact path="/schedules" component={SchedulesScreen} />
+            <Route exact path="/credentials" component={LoginScreen} />
+            <AuthRoute exact path="/traffics" component={TrafficScreen} />
+            <AuthRoute exact path="/lines" component={LinesScreen} />
+            <AuthRoute exact path="/schedules" component={SchedulesScreen} />
             <Route exact path="/team" component={TeamScreen} />
             <Route exact path="/contacts" component={ContactScreen} />
 
