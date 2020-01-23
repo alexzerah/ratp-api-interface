@@ -35,3 +35,71 @@
     margin: 8px 0 0 0;
   }
 }
+
+
+.trafficCard__collapse {
+  height: 0;
+  opacity: 0;
+}
+.trafficCard__container.isOpen .trafficCard__collapse {
+  height: 100px;
+  opacity: 1;
+}
+
+.cardList {
+  margin-top: 16px;
+  background: none; border: none;
+}
+.cardItem {
+  margin-bottom: 16px;
+  background-color: $white; border-radius: 5px;
+
+  &.ant-collapse-item {border: none;}
+  &#{&}#{&} .ant-collapse-header {padding: 0;}
+
+  .ant-collapse-content {border-radius: 0 0 5px 5px;}
+}
+.cardItem__header {
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px;
+
+  @media screen and (max-width: 600px){
+    flex-wrap: wrap;
+  }
+}
+.cardItem__header-title {
+  display: flex; align-items: center; min-width: 150px;
+
+  span {margin-left: 8px; font-size: 20px; font-weight: 600;}
+}
+.cardItem__header-icon {
+  width: 32px;
+}
+.cardItem__header-infos {
+  width: 70%;
+  @media screen and (max-width: 600px){
+    width: 100%;
+  }
+}
+
+.cardItem__timeline {
+  margin: 5px 0 0 0;
+}
+.cardItem__timeline-item {
+  padding-bottom: 5px;
+
+  &.ant-timeline-item-last > .ant-timeline-item-content {min-height: auto;}
+}
+
+.cardItem__empty {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 50px;
+}
+
+.cardItem__favourite {
+  display: flex; align-items: center;
+  @media screen and (max-width: 600px){
+    position: absolute; top: 15px; right: 15px;
+  }
+}

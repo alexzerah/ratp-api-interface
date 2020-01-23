@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { getStations } from "../actions/stations";
 import {getFavoritesLines, getLines, putFavoritesLines} from "../actions/lines";
 import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
@@ -7,18 +8,21 @@ import Tabs from "antd/lib/tabs";
 import Icon from "antd/lib/icon";
 import LineTab from "../components/line/LineTab";
 import notification from "antd/lib/notification";
+import { notificationError } from "../utils/helper";
 
 class LinesScreen extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loading: Object.keys(this.props.lines.linesList).length === 0
+            loading: Object.keys(this.props.lines.linesList).length === 0,
+            stations: {}
         };
 
         document.title = "RATP API Interface - Lignes de transports";
 
         this.loadLines = this.loadLines.bind(this);
+        this.loadStations = this.loadStations.bind(this);
         this.putFavoriteLines = this.putFavoriteLines.bind(this);
     }
 
@@ -104,6 +108,11 @@ class LinesScreen extends Component {
         }
     }
 
+    loadStations(type, line) {
+        line && this.props.getStations(type, line)
+            .catch(() => notificationError(this.props.stations.stationsError, this.props.stations.stationsError));
+    }
+
     render() {
         const { linesList } = this.props.lines;
         const { favoriteLines } = this.props.lines;
@@ -133,6 +142,8 @@ class LinesScreen extends Component {
                                         line={linesList.metros}
                                         favoriteLine={favoriteLines.metros}
                                         type="Métro"
+                                        onClick={line => this.loadStations("metros", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                         likeTab={(line, likedVal) => this.putFavoriteLines(line, likedVal, "metros")}
                                     />
                                 </Tabs.TabPane>
@@ -141,6 +152,8 @@ class LinesScreen extends Component {
                                         line={linesList.rers}
                                         favoriteLine={favoriteLines.rers}
                                         type="RER"
+                                        onClick={line => this.loadStations("rers", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                         likeTab={(line, likedVal) => this.putFavoriteLines(line, likedVal, "rers")}
                                     />
                                 </Tabs.TabPane>
@@ -149,6 +162,8 @@ class LinesScreen extends Component {
                                         line={linesList.tramways}
                                         favoriteLine={favoriteLines.tramways}
                                         type="Tramway"
+                                        onClick={line => this.loadStations("tramways", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                         likeTab={(line, likedVal) => this.putFavoriteLines(line, likedVal, "tramways")}
                                     />
                                 </Tabs.TabPane>
@@ -157,6 +172,8 @@ class LinesScreen extends Component {
                                         line={linesList.buses}
                                         favoriteLine={favoriteLines.buses}
                                         type="Bus"
+                                        onClick={line => this.loadStations("buses", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                         likeTab={(line, likedVal) => this.putFavoriteLines(line, likedVal, "buses")}
                                     />
                                 </Tabs.TabPane>
@@ -165,6 +182,8 @@ class LinesScreen extends Component {
                                         line={linesList.noctiliens}
                                         favoriteLine={favoriteLines.noctiliens}
                                         type="Noctilien"
+                                        onClick={line => this.loadStations("noctiliens", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                         likeTab={(line, likedVal) => this.putFavoriteLines(line, likedVal, "noctiliens")}
                                     />
                                 </Tabs.TabPane>
@@ -177,10 +196,12 @@ class LinesScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    stations: state.stations,
     lines: state.lines
 });
 
 const mapDispatchToProps = {
+    getStations,
     getLines,
     getFavoritesLines,
     putFavoritesLines

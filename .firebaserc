@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "toto-e2e69": {
+      "hosting": {
+        "prod": [
+          "toto-e2e69"
+        ]
+      }
+    }
+  }
+}

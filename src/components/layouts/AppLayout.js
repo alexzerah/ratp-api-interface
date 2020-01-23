@@ -143,7 +143,7 @@ class AppLayout extends Component {
                         {this.props.children}
                     </Layout.Content>
                     <Layout.Footer className={`${this.state.collapsedMenu ? "" : "ant-layout-footer--collapsed"}`}>
-                        RATP API Interface ©2019 Created by <a href="https://github.com/kevinhuang78/" rel="noreferrer noopener" target="_blank">Kévin Huang</a>
+                        RATP API Interface ©2020
                     </Layout.Footer>
                 </Layout>
             </Layout>
