@@ -1,1 +1,11 @@
-.team__item {display: flex; justify-content: center; align-items: center;}
+.team {
+    display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-evenly;
+}
+.team__item {
+    display: flex; justify-content: center; align-items: center;
+    height:100%; margin: 15px 0; padding: 0 10px;
+
+    .ant-card-cover > img {
+        max-height: 240px; object-fit: cover;
+    }
+}
