@@ -11,7 +11,8 @@ export function getLines() {
         const request = API.get('/lines');
         request
             .then(response => dispatch({type: GET_LINES_SUCCESS, data: response.data.result}))
-            .catch(error => dispatch({type: GET_LINES_FAILURE, data: error.response.data.result}))
+            // .catch(error => dispatch({type: GET_LINES_FAILURE, data: error.response.data.result}))
+            .catch(error => console.log(error))
         ;
         return request;
     };
