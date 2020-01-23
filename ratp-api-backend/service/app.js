@@ -14,7 +14,7 @@ app.use(cors())
 mongoose.connection.on('error',
     console.error.bind(console, 'MongoDB connection error:'))
 
-app.set('secretKey', "kevinLoveU") // jwt secret token
+app.set('secretKey', process.env.SECRET) // jwt secret token
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
