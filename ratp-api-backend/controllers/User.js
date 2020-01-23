@@ -72,7 +72,7 @@ exports.getFavorites = (req, res, next) => {
             const { username } = jwt.decode(token);
             userModel.findOne({ username }, (err, user) => {
                 if (err) return res.send(500, { error: err });
-                const favorites = user.favorites;
+                const favorites = user.favorites || [];
                 return res.status(200).send(favorites);
             })
         } else {

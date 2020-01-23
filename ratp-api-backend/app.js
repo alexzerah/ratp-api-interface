@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('/', (req,res) => {
+  return res.send("COucou 🐳")
+})
 app.use('/api', indexRouter);
 
 // catch 404 and forward to error handler
