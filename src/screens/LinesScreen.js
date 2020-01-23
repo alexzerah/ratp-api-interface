@@ -34,9 +34,9 @@ class LinesScreen extends Component {
             .catch(() => notificationError(this.props.lines.linesError.code, this.props.lines.linesError.message));
     }
 
-    loadStations(line) {
-        line && this.props.getStations(line)
-            .catch(() => notificationError(this.props.stations.stationsError.code, this.props.stations.stationsError.message));
+    loadStations(type, line) {
+        line && this.props.getStations(type, line)
+            .catch(() => notificationError(this.props.stations.stationsError, this.props.stations.stationsError));
     }
 
     render() {
@@ -67,7 +67,7 @@ class LinesScreen extends Component {
                                     <LineTab
                                         line={linesList.metros}
                                         type="Métro"
-                                        onClick={line => this.loadStations(line)}
+                                        onClick={line => this.loadStations("metros", line)}
                                         stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
@@ -75,24 +75,32 @@ class LinesScreen extends Component {
                                     <LineTab
                                         line={linesList.rers}
                                         type="RER"
+                                        onClick={line => this.loadStations("rers", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Tramways" key="tramways">
                                     <LineTab
                                         line={linesList.tramways}
                                         type="Tramway"
+                                        onClick={line => this.loadStations("tramways", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Bus" key="buses">
                                     <LineTab
                                         line={linesList.buses}
                                         type="Bus"
+                                        onClick={line => this.loadStations("buses", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Noctiliens" key="noctiliens">
                                     <LineTab
                                         line={linesList.noctiliens}
                                         type="Noctilien"
+                                        onClick={line => this.loadStations("noctiliens", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                             </Tabs>
