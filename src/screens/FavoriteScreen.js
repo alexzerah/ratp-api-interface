@@ -57,30 +57,35 @@ class FavoriteScreen extends Component {
                                     <LineTab
                                         line={favoriteLines.metros}
                                         type="Métro"
+                                        removeLikeButton
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="RERs" key="rers">
                                     <LineTab
                                         line={favoriteLines.rers}
                                         type="RER"
+                                        removeLikeButton
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Tramways" key="tramways">
                                     <LineTab
                                         line={favoriteLines.tramways}
                                         type="Tramway"
+                                        removeLikeButton
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Bus" key="buses">
                                     <LineTab
                                         line={favoriteLines.buses}
                                         type="Bus"
+                                        removeLikeButton
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Noctiliens" key="noctiliens">
                                     <LineTab
                                         line={favoriteLines.noctiliens}
                                         type="Noctilien"
+                                        removeLikeButton
                                     />
                                 </Tabs.TabPane>
                             </Tabs>

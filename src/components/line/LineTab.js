@@ -51,7 +51,14 @@ class LineTab extends Component {
                             <LineCard
                                 key={this.props.type + "-" + l.id}
                                 type={this.props.type}
+                                isLiked={
+                                    this.props.favoriteLine &&
+                                    this.props.favoriteLine.length > 0 &&
+                                    this.props.favoriteLine.some(line => line.code === l.code)
+                                }
                                 lineItem={l}
+                                onClick={(line, likedVal) => this.props.likeTab && this.props.likeTab(line, likedVal)}
+                                removeLikeButton={this.props.removeLikeButton}
                             />
                         )
                 }
@@ -67,6 +74,12 @@ class LineTab extends Component {
 LineTab.propTypes = {
     /** The array of lines */
     line: PropTypes.array,
+    /** The array of favorite lines */
+    favoriteLine: PropTypes.array,
+    /** If the boolean is true, remove the like button */
+    removeLikeButton: PropTypes.bool,
+    /** Function triggered to like the line */
+    likeTab: PropTypes.func,
     /** The type of line */
     type: PropTypes.oneOf(['Métro', 'Tramway', 'RER', 'Noctilien', 'Bus']).isRequired
 };
