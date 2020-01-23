@@ -96,24 +96,6 @@ class AppLayout extends Component {
                                     </Link>
                                 </Menu.Item>
                         }
-                        {
-                            isConnected
-                                ? (
-                                    <Menu.Item key="logout">
-                                        <div onClick={() => this.props.logOut()}>
-                                            <Icon type="logout" />
-                                            <span>Déconnexion</span>
-                                        </div>
-                                    </Menu.Item>
-                                ) : (
-                                    <Menu.Item key="credentials">
-                                        <Link to="/credentials">
-                                            <Icon type="login" />
-                                            <span>Authentification</span>
-                                        </Link>
-                                    </Menu.Item>
-                                )
-                        }
                         <Menu.SubMenu
                             key="about"
                             title={
@@ -136,6 +118,24 @@ class AppLayout extends Component {
                                 </Link>
                             </Menu.Item>
                         </Menu.SubMenu>
+                        {
+                            isConnected
+                                ? (
+                                    <Menu.Item key="logout">
+                                        <div onClick={() => this.props.logOut()}>
+                                            <Icon type="logout" />
+                                            <span>Déconnexion</span>
+                                        </div>
+                                    </Menu.Item>
+                                ) : (
+                                    <Menu.Item key="credentials">
+                                        <Link to="/credentials">
+                                            <Icon type="login" />
+                                            <span>Authentification</span>
+                                        </Link>
+                                    </Menu.Item>
+                                )
+                        }
                     </Menu>
                 </Layout.Sider>
                 <Layout>
