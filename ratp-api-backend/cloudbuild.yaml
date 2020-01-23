@@ -7,7 +7,7 @@ steps:
   - name: gcr.io/cloud-builders/gcloud
     args: ['app', 'deploy', '--project', '$PROJECT_ID',
            '-q', '$_GAE_PROMOTE',
-           './pute/app.flexible.yaml', '-v', '$_VID']
+           './service/app.flexible.yaml', '-v', '$_VID']
     id: 'deploying on app engine'
 
   - name: 'gcr.io/cloud-builders/gcloud'
