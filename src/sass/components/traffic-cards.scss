@@ -56,8 +56,11 @@
 
   &.ant-collapse-item {border: none;}
   &#{&}#{&} .ant-collapse-header {padding: 0;}
+
+  .ant-collapse-content {border-radius: 0 0 5px 5px;}
 }
 .cardItem__header {
+  position: relative;
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 16px;
 
@@ -92,4 +95,11 @@
 .cardItem__empty {
   display: flex; align-items: center; justify-content: center;
   min-height: 50px;
+}
+
+.cardItem__favourite {
+  display: flex; align-items: center;
+  @media screen and (max-width: 600px){
+    position: absolute; top: 15px; right: 15px;
+  }
 }

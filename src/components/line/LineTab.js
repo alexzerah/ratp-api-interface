@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import Pagination from "antd/lib/pagination";
 import Collapse from "antd/lib/collapse";
 import Spin from "antd/lib/spin";
+import Tooltip from "antd/lib/tooltip";
 import Timeline from "antd/lib/timeline/Timeline";
 import Icon from "antd/lib/icon";
-import LineCard from "./LineCard";
 import LogoMetro from "../../static/img/logo/logo-metro.png";
 import LogoTramway from "../../static/img/logo/logo-tramway.png";
 import LogoRer from "../../static/img/logo/logo-rer.png";
@@ -109,11 +109,46 @@ class LineTab extends Component {
                             header={
                                 <div className="cardItem__header" onClick={() => this.getStations(l.code)}>
                                     <div className="cardItem__header-title">
-                                        <img className="cardItem__header-icon" src={this.renderIcon(this.props.type)} /><span>{l.code}</span>
+                                        <img className="cardItem__header-icon" src={this.renderIcon(this.props.type)} alt={this.props.type} /><span>{l.code}</span>
                                     </div>
                                     <div className="cardItem__header-infos">
                                         <p>{l.name}</p>
                                         <p>Directions : {l.directions}</p>
+                                    </div>
+                                    <div>
+                                    {!this.props.removeLikeButton
+                                        ? (this.props.favoriteLine &&
+                                            this.props.favoriteLine.length > 0 &&
+                                            this.props.favoriteLine.some(line => line.code === l.code))
+                                            ? <Tooltip
+                                                placement="topRight"
+                                                title={`Cliquez sur le coeur pour enlever ${l.name} de la liste des favoris`}
+                                                onClick={e => {
+                                                    e.stopPropagation();
+                                                    this.props.likeTab && this.props.likeTab(l, !(this.props.favoriteLine && this.props.favoriteLine.length > 0 && this.props.favoriteLine.some(line => line.code === l.code)))
+                                                }}
+                                                // onClick={(line, likedVal) => this.props.likeTab && this.props.likeTab(line, likedVal)}
+                                            >
+                                                <div className="cardItem__favourite">
+                                                <Icon type="heart" theme="twoTone" twoToneColor="#eb2f96" style={{fontSize: "20px"}} />
+                                                </div>
+                                            </Tooltip>
+                                                :
+                                            <Tooltip
+                                                placement="topRight"
+                                                title={`Cliquez sur le coeur pour mettre ${l.name} en favori`}
+                                                onClick={e => {
+                                                    e.stopPropagation();
+                                                    this.props.likeTab && this.props.likeTab(l, !(this.props.favoriteLine && this.props.favoriteLine.length > 0 && this.props.favoriteLine.some(line => line.code === l.code)))
+                                                }}
+                                                // onClick={(line, likedVal) => this.props.likeTab && this.props.likeTab(l, likedVal)}
+                                            >
+                                                <div className="cardItem__favourite">
+                                                <Icon type="heart" style={{fontSize: "20px"}}/>
+                                                </div>
+                                            </Tooltip>
+                                            : null
+                                    }
                                     </div>
                                 </div>
                             }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { getStations } from "../actions/stations";
 import { getFavoritesLines } from "../actions/lines";
 import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
@@ -31,6 +32,11 @@ class FavoriteScreen extends Component {
             .catch(() => notificationError(this.props.lines.getFavoriteLinesError, ""));
     }
 
+    loadStations(type, line) {
+        line && this.props.getStations(type, line)
+            .catch(() => notificationError(this.props.stations.stationsError, this.props.stations.stationsError));
+    }
+
     render() {
         const { favoriteLines } = this.props.lines;
         return (
@@ -58,6 +64,8 @@ class FavoriteScreen extends Component {
                                         line={favoriteLines.metros}
                                         type="Métro"
                                         removeLikeButton
+                                        onClick={line => this.loadStations("metros", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="RERs" key="rers">
@@ -65,6 +73,8 @@ class FavoriteScreen extends Component {
                                         line={favoriteLines.rers}
                                         type="RER"
                                         removeLikeButton
+                                        onClick={line => this.loadStations("rers", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Tramways" key="tramways">
@@ -72,6 +82,8 @@ class FavoriteScreen extends Component {
                                         line={favoriteLines.tramways}
                                         type="Tramway"
                                         removeLikeButton
+                                        onClick={line => this.loadStations("tramways", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Bus" key="buses">
@@ -79,6 +91,8 @@ class FavoriteScreen extends Component {
                                         line={favoriteLines.buses}
                                         type="Bus"
                                         removeLikeButton
+                                        onClick={line => this.loadStations("buses", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Noctiliens" key="noctiliens">
@@ -86,6 +100,8 @@ class FavoriteScreen extends Component {
                                         line={favoriteLines.noctiliens}
                                         type="Noctilien"
                                         removeLikeButton
+                                        onClick={line => this.loadStations("noctiliens", line)}
+                                        stationsList={this.props.stations && this.props.stations.stationsList}
                                     />
                                 </Tabs.TabPane>
                             </Tabs>
@@ -97,10 +113,12 @@ class FavoriteScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    stations: state.stations,
     lines: state.lines
 });
 
 const mapDispatchToProps = {
+    getStations,
     getFavoritesLines
 };
 
