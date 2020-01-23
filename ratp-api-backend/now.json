@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "ratpreact",
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    },
+    {
+      "src":"/",
+      "dest":"app.js",
+      "methods":["GET"]
+    },{
+      "src":"/favorites",
+      "dest":"app.js",
+      "methods":["GET"]
+    }
+  ]
+}

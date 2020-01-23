@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
-
+var http = require('http');
 var indexRouter = require('./routes/index');
 const mongoose = require('./config/db'); //database configuration
 require('dotenv').config();
@@ -46,5 +46,22 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+var port = (process.env.PORT || '9000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
 
 module.exports = app;
