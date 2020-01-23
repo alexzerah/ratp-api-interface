@@ -1,6 +1,6 @@
 {
-  "short_name": "react-ratp-pwa",
-  "name": "React PWA",
+  "short_name": "React Ratp PWA",
+  "name": "J'ADORE LE PAIN 🥖",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#222",
+  "background_color": "#222"
 }
