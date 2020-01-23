@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+ratp-api-backend/node_modules
 /.pnp
 .pnp.js
 
@@ -24,3 +25,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+ratp-api-backend/node_modules
+ratp-api-backend/build
+ratp-api-backend/.env

@@ -19,7 +19,7 @@ class LineTab extends Component {
         super(props);
 
         this.state = {
-            line: this.props.line,
+            line: (props.line && props.line.length > 0) && props.line,
             page: 1
         };
 
@@ -35,7 +35,7 @@ class LineTab extends Component {
     }
 
     getStations(line) {
-        if (this.props.stationsList.some(sL => sL.line === line) === false) {
+        if (this.props.stationsList && this.props.stationsList.some(sL => sL.line === line) === false) {
             this.props.onClick && this.props.onClick(line);
         }
     }
@@ -77,15 +77,24 @@ class LineTab extends Component {
                 </Select>
                 )}
                 {/* {
-                    this.state.line && this.state.line
+                    this.state.line &&
+                    this.state.line.length > 0 &&
+                    this.state.line
                         .slice((this.state.page - 1) * 10, this.state.page * 10)
                         .map(l =>
                             <LineCard
                                 key={this.props.type + "-" + l.id}
                                 type={this.props.type}
+                                isLiked={
+                                    this.props.favoriteLine &&
+                                    this.props.favoriteLine.length > 0 &&
+                                    this.props.favoriteLine.some(line => line.code === l.code)
+                                }
                                 lineItem={l}
                                 stationsList={this.props.stationsList}
                                 onClick={() => this.props.onClick && this.props.onClick(l.code)}
+                                onClick={(line, likedVal) => this.props.likeTab && this.props.likeTab(line, likedVal)}
+                                removeLikeButton={this.props.removeLikeButton}
                             />
                         )
                 } */}
@@ -110,7 +119,7 @@ class LineTab extends Component {
                             }
                             
                         >
-                            {this.props.stationsList.some(sL => sL.line === l.code) ? (
+                            {this.props.stationsList && this.props.stationsList.some(sL => sL.line === l.code) ? (
                                 <Timeline className="cardItem__timeline" mode="alternate">
                                 {
                                     this.props.stationsList.find(sL => sL.line === l.code).stations.map(
@@ -151,7 +160,13 @@ class LineTab extends Component {
 
 LineTab.propTypes = {
     /** The array of lines */
-    line: PropTypes.array.isRequired,
+    line: PropTypes.array,
+    /** The array of favorite lines */
+    favoriteLine: PropTypes.array,
+    /** If the boolean is true, remove the like button */
+    removeLikeButton: PropTypes.bool,
+    /** Function triggered to like the line */
+    likeTab: PropTypes.func,
     /** The type of line */
     type: PropTypes.oneOf(['Métro', 'Tramway', 'RER', 'Noctilien', 'Bus']).isRequired
 };

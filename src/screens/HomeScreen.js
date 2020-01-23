@@ -18,7 +18,7 @@ class HomeScreen extends Component {
             >
                 <h1 className="title title--1">RATP API Interface</h1>
                 <div className="home__map-container">
-                    <img className="home__map" src={Map} />
+                    <img className="home__map" src={Map} alt="Carte métro parisien" />
                 </div>
                 <Divider>Qu'est-ce que ce site web ?</Divider>
                 <p>Il s'agit d'une web app développé dans le cadre d'un cours à l'Institut de l'Internet et du Multimédia</p>

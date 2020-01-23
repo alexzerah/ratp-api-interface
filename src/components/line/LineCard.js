@@ -6,6 +6,8 @@ import LogoRer from "../../static/img/logo/logo-rer.png";
 import LogoNoctilien from "../../static/img/logo/logo-noctilien.png";
 import LogoBus from "../../static/img/logo/logo-bus.png";
 import { getStations } from "../../actions/stations";
+import Icon from "antd/lib/icon";
+import Tooltip from "antd/lib/tooltip";
 
 
 class LineCard extends Component {
@@ -62,6 +64,23 @@ render() {
                     <p className="trafficCard__title">{this.props.lineItem.name}</p>
                     <p className="trafficCard__message">Directions : {this.props.lineItem.directions}</p>
                 </div>
+                {
+                !this.props.removeLikeButton
+                    ? this.props.isLiked
+                        ? <Tooltip
+                        title={`Cliquez sur la carte pour enlever ${this.props.lineItem.name} de la liste des favoris`}
+                        onClick={() => this.props.onClick(this.props.lineItem, !this.props.isLiked)}
+                    >
+                        <Icon type="heart" theme="twoTone" twoToneColor="#eb2f96" />
+                    </Tooltip>
+                        :<Tooltip
+                        title={`Cliquez sur la carte pour mettre ${this.props.lineItem.name} en favori`}
+                        onClick={() => this.props.onClick(this.props.lineItem, !this.props.isLiked)}
+                    >
+                        <Icon type="heart"/>
+                    </Tooltip>
+                    : null
+                }
             </div>
             <div className="trafficCard__collapse">
                 {this.props.stationsList.some(sL => sL.line === this.props.lineItem.code) && 
@@ -76,6 +95,10 @@ render() {
 LineCard.propTypes = {
     /** The item which is containing traffic information */
     lineItem: PropTypes.object.isRequired,
+    /** If the line is in favorite list */
+    isLiked: PropTypes.bool,
+    /** If the boolean is true, remove the like button */
+    removeLikeButton: PropTypes.bool,
     /** The type of traffic */
     type: PropTypes.oneOf(['Métro', 'Tramway', 'RER', 'Noctilien', 'Bus']).isRequired
 };
