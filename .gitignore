@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-ratp-api-backend/
 /.pnp
 .pnp.js
 
