@@ -88,6 +88,15 @@ class AppLayout extends Component {
                                 </Menu.Item>
                         }
                         {
+                            isConnected &&
+                                <Menu.Item key="favorites">
+                                    <Link to="/favorites">
+                                        <Icon type="heart" />
+                                        <span>Favoris</span>
+                                    </Link>
+                                </Menu.Item>
+                        }
+                        {
                             isConnected
                                 ? (
                                     <Menu.Item key="logout">
